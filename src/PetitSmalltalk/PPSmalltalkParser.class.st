@@ -318,6 +318,12 @@ PPSmalltalkParser >> methodSequence [
 			with: (self build: tempNodes sequence: periodNodes1 , periodNodes2 , periodNodes3 , periodNodes4 , statementNodes) ]
 ]
 
+{ #category : #'grammar-blocks' }
+PPSmalltalkParser >> namedBlock [
+	^ super namedBlock map: [ :leftToken :blockNode :rightToken | 
+		RBNamedBlockNode node: blockNode ]
+]
+
 { #category : #'grammar-literals' }
 PPSmalltalkParser >> nilLiteral [
 	^ super nilLiteral
@@ -365,7 +371,7 @@ PPSmalltalkParser >> pragma [
 
 { #category : #grammar }
 PPSmalltalkParser >> return [
-	^ super return map: [ :token :expressionNode | RBReturnNode return: token start value: expressionNode ]
+	^ super return map: [ :token :expressionNode | RBReturnNode start: token start value: expressionNode ]
 ]
 
 { #category : #grammar }

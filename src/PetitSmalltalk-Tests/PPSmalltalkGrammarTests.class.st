@@ -35,6 +35,34 @@ PPSmalltalkGrammarTests >> testArgumentsBlock3 [
 		rule: #block
 ]
 
+{ #category : #'testing-named blocks' }
+PPSmalltalkGrammarTests >> testArgumentsNamedBlock1 [
+	self 
+		parse: '£ name: a £'
+		rule: #namedBlock
+]
+
+{ #category : #'testing-named blocks' }
+PPSmalltalkGrammarTests >> testArgumentsNamedBlock2 [
+	self 
+		parse: '£ name £'
+		rule: #namedBlock
+]
+
+{ #category : #'testing-named blocks' }
+PPSmalltalkGrammarTests >> testArgumentsNamedBlock3 [
+	self 
+		parse: '£ ++ a £'
+		rule: #namedBlock
+]
+
+{ #category : #'testing-named blocks' }
+PPSmalltalkGrammarTests >> testArgumentsNamedBlock4 [
+	self 
+		parse: '£ k: a1 k: a2 £'
+		rule: #namedBlock
+]
+
 { #category : #testing }
 PPSmalltalkGrammarTests >> testArray1 [
 	self 
@@ -396,6 +424,20 @@ PPSmalltalkGrammarTests >> testComplexBlock2 [
 		rule: #block
 ]
 
+{ #category : #'testing-named blocks' }
+PPSmalltalkGrammarTests >> testComplexNamedBlock1 [
+	self 
+		parse: '£ k: a | b | c £'
+		rule: #namedBlock
+]
+
+{ #category : #'testing-named blocks' }
+PPSmalltalkGrammarTests >> testComplexNamedBlock2 [
+	self 
+		parse: '£k:a|b|c£'
+		rule: #namedBlock
+]
+
 { #category : #'testing-messages' }
 PPSmalltalkGrammarTests >> testKeywordExpression1 [
 	self 
@@ -727,6 +769,27 @@ PPSmalltalkGrammarTests >> testSimpleBlock3 [
 		rule: #block
 ]
 
+{ #category : #'testing-named blocks' }
+PPSmalltalkGrammarTests >> testSimpleNamedBlock1 [
+	self 
+		parse: '£ foo £'
+		rule: #namedBlock
+]
+
+{ #category : #'testing-named blocks' }
+PPSmalltalkGrammarTests >> testSimpleNamedBlock2 [
+	self 
+		parse: '£ foo nil £'
+		rule: #namedBlock
+]
+
+{ #category : #'testing-named blocks' }
+PPSmalltalkGrammarTests >> testSimpleNamedBlock3 [
+	self 
+		parse: '£ k:a £'
+		rule: #namedBlock
+]
+
 { #category : #'testing-literals' }
 PPSmalltalkGrammarTests >> testSpecialLiteral1 [
 	self 
@@ -767,6 +830,27 @@ PPSmalltalkGrammarTests >> testStatementBlock3 [
 	self 
 		parse: '[ | a b | nil ]'
 		rule: #block
+]
+
+{ #category : #'testing-named blocks' }
+PPSmalltalkGrammarTests >> testStatementNamedBlock1 [
+	self 
+		parse: '£ foo nil £'
+		rule: #namedBlock
+]
+
+{ #category : #'testing-named blocks' }
+PPSmalltalkGrammarTests >> testStatementNamedBlock2 [
+	self 
+		parse: '£ bar | a | nil £'
+		rule: #namedBlock
+]
+
+{ #category : #'testing-named blocks' }
+PPSmalltalkGrammarTests >> testStatementNamedBlock3 [
+	self 
+		parse: '£ foo | a b | nil £'
+		rule: #namedBlock
 ]
 
 { #category : #testing }

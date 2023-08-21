@@ -81,7 +81,8 @@ Class {
 		'unaryToken',
 		'variable',
 		'arrayItemPeriod',
-		'arrayItemSemicolon'
+		'arrayItemSemicolon',
+		'namedBlock'
 	],
 	#category : #PetitSmalltalk
 }
@@ -360,6 +361,11 @@ PPSmalltalkGrammar >> multiword [
 	^ keyword plus
 ]
 
+{ #category : #'grammar-blocks' }
+PPSmalltalkGrammar >> namedBlock [
+	^ $£ asParser smalltalkToken , method , $£ asParser smalltalkToken
+]
+
 { #category : #'grammar-literals' }
 PPSmalltalkGrammar >> nilLiteral [
 	^ nilToken
@@ -441,7 +447,7 @@ PPSmalltalkGrammar >> pragmas [
 
 { #category : #grammar }
 PPSmalltalkGrammar >> primary [
-	^ literal / variable / block / parens / array
+	^ literal / variable / block / namedBlock / parens / array
 ]
 
 { #category : #grammar }

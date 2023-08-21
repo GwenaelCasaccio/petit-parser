@@ -66,6 +66,54 @@ PPSmalltalkParserTests >> testArgumentsBlock3 [
 	self assert: result body statements isEmpty
 ]
 
+{ #category : #'testing-named blocks' }
+PPSmalltalkParserTests >> testArgumentsNamedBlock1 [
+
+	super testArgumentsNamedBlock1.
+	self assert: result isNamedBlock.
+	self assert: result arguments size equals: 1.
+	self assert: result arguments first isVariable.
+	self assert: result arguments first name equals: 'a'.
+	self assert: result body temporaries isEmpty.
+	self assert: result body statements isEmpty
+]
+
+{ #category : #'testing-named blocks' }
+PPSmalltalkParserTests >> testArgumentsNamedBlock2 [
+
+	super testArgumentsNamedBlock2.
+	self assert: result isNamedBlock.
+	self assert: result arguments isEmpty.
+	self assert: result body temporaries isEmpty.
+	self assert: result body statements isEmpty
+]
+
+{ #category : #'testing-named blocks' }
+PPSmalltalkParserTests >> testArgumentsNamedBlock3 [
+
+	super testArgumentsNamedBlock3.
+	self assert: result isNamedBlock.
+	self assert: result arguments size equals: 1.
+	self assert: result arguments first isVariable.
+	self assert: result arguments first name equals: 'a'.
+	self assert: result body temporaries isEmpty.
+	self assert: result body statements isEmpty
+]
+
+{ #category : #'testing-named blocks' }
+PPSmalltalkParserTests >> testArgumentsNamedBlock4 [
+
+	super testArgumentsNamedBlock4.
+	self assert: result isNamedBlock.
+	self assert: result arguments size equals: 2.
+	self assert: result arguments first isVariable.
+	self assert: result arguments first name equals: 'a1'.
+	self assert: result arguments second isVariable.
+	self assert: result arguments second name equals: 'a2'.
+	self assert: result body temporaries isEmpty.
+	self assert: result body statements isEmpty
+]
+
 { #category : #testing }
 PPSmalltalkParserTests >> testArray1 [
 	super testArray1.
@@ -580,6 +628,26 @@ PPSmalltalkParserTests >> testComplexBlock2 [
 	self assert: result body statements size equals: 1
 ]
 
+{ #category : #'testing-named blocks' }
+PPSmalltalkParserTests >> testComplexNamedBlock1 [
+
+	super testComplexNamedBlock1.
+	self assert: result isNamedBlock.
+	self assert: result arguments size equals: 1.
+	self assert: result body temporaries size equals: 1.
+	self assert: result body statements size equals: 1
+]
+
+{ #category : #'testing-named blocks' }
+PPSmalltalkParserTests >> testComplexNamedBlock2 [
+
+	super testComplexNamedBlock2.
+	self assert: result isNamedBlock.
+	self assert: result arguments size equals: 1.
+	self assert: result body temporaries size equals: 1.
+	self assert: result body statements size equals: 1
+]
+
 { #category : #'testing-messages' }
 PPSmalltalkParserTests >> testKeywordExpression1 [
 	super testKeywordExpression1.
@@ -1084,6 +1152,36 @@ PPSmalltalkParserTests >> testSimpleBlock3 [
 	self assert: result body statements isEmpty
 ]
 
+{ #category : #'testing-named blocks' }
+PPSmalltalkParserTests >> testSimpleNamedBlock1 [
+
+	super testSimpleNamedBlock1.
+	self assert: result isNamedBlock.
+	self assert: result arguments isEmpty.
+	self assert: result body temporaries isEmpty.
+	self assert: result body statements isEmpty
+]
+
+{ #category : #'testing-named blocks' }
+PPSmalltalkParserTests >> testSimpleNamedBlock2 [
+
+	super testSimpleNamedBlock2.
+	self assert: result isNamedBlock.
+	self assert: result arguments isEmpty.
+	self assert: result body temporaries isEmpty.
+	self assert: result body statements size equals: 1
+]
+
+{ #category : #'testing-named blocks' }
+PPSmalltalkParserTests >> testSimpleNamedBlock3 [
+
+	super testSimpleNamedBlock3.
+	self assert: result isNamedBlock.
+	self assert: result arguments size equals: 1.
+	self assert: result body temporaries isEmpty.
+	self assert: result body statements isEmpty
+]
+
 { #category : #'testing-literals' }
 PPSmalltalkParserTests >> testSpecialLiteral1 [
 	super testSpecialLiteral1.
@@ -1129,6 +1227,42 @@ PPSmalltalkParserTests >> testStatementBlock3 [
 	self assert: result isBlock.
 	self assert: result arguments isEmpty.
 	self assert: result body temporaries size equals: 2.
+	self assert: result body statements size equals: 1
+]
+
+{ #category : #'testing-named blocks' }
+PPSmalltalkParserTests >> testStatementNamedBlock1 [
+
+	super testStatementNamedBlock1.
+	self assert: result isNamedBlock.
+	self assert: result arguments isEmpty.
+	self assert: result body temporaries isEmpty.
+	self assert: result body statements size equals: 1
+]
+
+{ #category : #'testing-named blocks' }
+PPSmalltalkParserTests >> testStatementNamedBlock2 [
+
+	super testStatementNamedBlock2.
+	self assert: result isNamedBlock.
+	self assert: result arguments isEmpty.
+	self assert: result body temporaries size equals: 1.
+	self assert: result body temporaries first isVariable.
+	self assert: result body temporaries first name equals: 'a'.
+	self assert: result body statements size equals: 1
+]
+
+{ #category : #'testing-named blocks' }
+PPSmalltalkParserTests >> testStatementNamedBlock3 [
+
+	super testStatementNamedBlock3.
+	self assert: result isNamedBlock.
+	self assert: result arguments isEmpty.
+	self assert: result body temporaries size equals: 2.
+	self assert: result body temporaries first isVariable.
+	self assert: result body temporaries first name equals: 'a'.
+	self assert: result body temporaries second isVariable.
+	self assert: result body temporaries second name equals: 'b'.
 	self assert: result body statements size equals: 1
 ]
 
