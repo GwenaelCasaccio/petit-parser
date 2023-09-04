@@ -741,6 +741,27 @@ PPSmalltalkGrammarTests >> testPragma9 [
 		rule: #method
 ]
 
+{ #category : #'testing-named blocks' }
+PPSmalltalkGrammarTests >> testPragmaStatementNamedBlock1 [
+	self 
+		parse: '£ foo <pragma1> nil £'
+		rule: #namedBlock
+]
+
+{ #category : #'testing-named blocks' }
+PPSmalltalkGrammarTests >> testPragmaStatementNamedBlock2 [
+	self 
+		parse: '£ bar | a | <pragma1: 2 pragma2: 2> nil £'
+		rule: #namedBlock
+]
+
+{ #category : #'testing-named blocks' }
+PPSmalltalkGrammarTests >> testPragmaStatementNamedBlock3 [
+	self 
+		parse: '£ foo | a b | <+ 123> nil £'
+		rule: #namedBlock
+]
+
 { #category : #testing }
 PPSmalltalkGrammarTests >> testSequence1 [
 	self 

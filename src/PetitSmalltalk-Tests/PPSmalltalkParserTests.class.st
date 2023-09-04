@@ -1111,6 +1111,48 @@ PPSmalltalkParserTests >> testPragma9 [
 	self assert: result body statements isEmpty
 ]
 
+{ #category : #'testing-named blocks' }
+PPSmalltalkParserTests >> testPragmaStatementNamedBlock1 [
+
+	super testPragmaStatementNamedBlock1.
+	self assert: result pragmas size equals: 1.
+	self assert: result pragmas first selector equals: #pragma1.
+	self assert: result isNamedBlock.
+	self assert: result arguments isEmpty.
+	self assert: result body temporaries isEmpty.
+	self assert: result body statements size equals: 1
+]
+
+{ #category : #'testing-named blocks' }
+PPSmalltalkParserTests >> testPragmaStatementNamedBlock2 [
+
+	super testPragmaStatementNamedBlock2.
+	self assert: result pragmas size equals: 1.
+	self assert: result pragmas first selector equals: #pragma1:pragma2:.
+	self assert: result isNamedBlock.
+	self assert: result arguments isEmpty.
+	self assert: result body temporaries size equals: 1.
+	self assert: result body temporaries first isVariable.
+	self assert: result body temporaries first name equals: 'a'.
+	self assert: result body statements size equals: 1
+]
+
+{ #category : #'testing-named blocks' }
+PPSmalltalkParserTests >> testPragmaStatementNamedBlock3 [
+
+	super testPragmaStatementNamedBlock3.
+	self assert: result pragmas size equals: 1.
+	self assert: result pragmas first selector equals: #+.
+	self assert: result isNamedBlock.
+	self assert: result arguments isEmpty.
+	self assert: result body temporaries size equals: 2.
+	self assert: result body temporaries first isVariable.
+	self assert: result body temporaries first name equals: 'a'.
+	self assert: result body temporaries second isVariable.
+	self assert: result body temporaries second name equals: 'b'.
+	self assert: result body statements size equals: 1
+]
+
 { #category : #testing }
 PPSmalltalkParserTests >> testSequence1 [
 	super testSequence1.
