@@ -1057,6 +1057,20 @@ PPSmalltalkParserTests >> testPragma2 [
 ]
 
 { #category : #'testing-pragmas' }
+PPSmalltalkParserTests >> testPragma20 [
+
+	| pragma |
+	super testPragma20.
+	self assert: result pragmas size equals: 1.
+	pragma := result pragmas first.
+	self assert: pragma selector equals: #+.
+	self assert: pragma arguments size equals: 1.
+	self assert: pragma arguments first equals: (PPSmalltalkParser parseExpression: '1 a b c').
+	self assert: result body temporaries isEmpty.
+	self assert: result body statements isEmpty
+]
+
+{ #category : #'testing-pragmas' }
 PPSmalltalkParserTests >> testPragma3 [
 	super testPragma3.
 	self assert: result pragmas pragmas: #('<foo>').

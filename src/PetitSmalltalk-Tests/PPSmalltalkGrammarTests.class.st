@@ -700,6 +700,13 @@ PPSmalltalkGrammarTests >> testPragma2 [
 ]
 
 { #category : #'testing-pragmas' }
+PPSmalltalkGrammarTests >> testPragma20 [
+	self 
+		parse: 'method ° + 1 a b c   °'
+		rule: #method
+]
+
+{ #category : #'testing-pragmas' }
 PPSmalltalkGrammarTests >> testPragma3 [
 	self 
 		parse: 'method | a | <foo>'
