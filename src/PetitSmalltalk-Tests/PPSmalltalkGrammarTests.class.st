@@ -625,7 +625,7 @@ PPSmalltalkGrammarTests >> testPragma1 [
 { #category : #'testing-pragmas' }
 PPSmalltalkGrammarTests >> testPragma10 [
 	self 
-		parse: 'method <foo: bar>'
+		parse: 'method <foo: #bar>'
 		rule: #method
 ]
 
@@ -653,7 +653,7 @@ PPSmalltalkGrammarTests >> testPragma13 [
 { #category : #'testing-pragmas' }
 PPSmalltalkGrammarTests >> testPragma14 [
 	self 
-		parse: 'method <foo: ()>'
+		parse: 'method <foo: #()>'
 		rule: #method
 ]
 
@@ -681,7 +681,14 @@ PPSmalltalkGrammarTests >> testPragma17 [
 { #category : #'testing-pragmas' }
 PPSmalltalkGrammarTests >> testPragma18 [
 	self 
-		parse: 'method <foo: 1 bar: 2  baz: b>'
+		parse: 'method <foo: 1 bar: 2  baz: #b>'
+		rule: #method
+]
+
+{ #category : #'testing-pragmas' }
+PPSmalltalkGrammarTests >> testPragma19 [
+	self 
+		parse: 'method °foo: 1 + 1 + 1 bar: 2 a b c  baz: (#b classTo: 123)°'
 		rule: #method
 ]
 
@@ -751,7 +758,7 @@ PPSmalltalkGrammarTests >> testPragmaStatementNamedBlock1 [
 { #category : #'testing-named blocks' }
 PPSmalltalkGrammarTests >> testPragmaStatementNamedBlock2 [
 	self 
-		parse: '£ bar | a | <pragma1: 2 pragma2: 2> nil £'
+		parse: '£ bar | a | °pragma1: 2 pragma2: 2° nil £'
 		rule: #namedBlock
 ]
 

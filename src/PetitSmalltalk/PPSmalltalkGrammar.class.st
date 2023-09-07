@@ -82,7 +82,13 @@ Class {
 		'variable',
 		'arrayItemPeriod',
 		'arrayItemSemicolon',
-		'namedBlock'
+		'namedBlock',
+		'newPragma',
+		'newPragmaMessage',
+		'newKeywordPragma',
+		'newUnaryPragma',
+		'newBinaryPragma',
+		'newPragmas'
 	],
 	#category : #PetitSmalltalk
 }
@@ -320,7 +326,7 @@ PPSmalltalkGrammar >> keywordMethod [
 
 { #category : #'grammar-pragmas' }
 PPSmalltalkGrammar >> keywordPragma [
-	^ (keywordToken , arrayItem) plus ==> [ :nodes | 
+	^ (keywordToken , binaryExpression wrapped) plus ==> [ :nodes | 
 		Array 
 			with: (nodes collect: [ :each | each first ])
 			with: (nodes collect: [ :each | each second ]) ]
@@ -353,7 +359,7 @@ PPSmalltalkGrammar >> methodDeclaration [
 
 { #category : #grammar }
 PPSmalltalkGrammar >> methodSequence [
-	^ periodToken star , pragmas , periodToken star , temporaries , periodToken star , pragmas , periodToken star , statements
+	^ periodToken star , pragmas , newPragmas , periodToken star , temporaries , periodToken star , pragmas , newPragmas, periodToken star , statements
 ]
 
 { #category : #primitives }
@@ -364,6 +370,45 @@ PPSmalltalkGrammar >> multiword [
 { #category : #'grammar-blocks' }
 PPSmalltalkGrammar >> namedBlock [
 	^ $£ asParser smalltalkToken , method , $£ asParser smalltalkToken
+]
+
+{ #category : #'grammar-pragmas' }
+PPSmalltalkGrammar >> newBinaryPragma [
+	^ (binaryToken , unaryExpression ) ==> [ :nodes | 
+		Array 
+			with: (Array with: nodes first)
+			with: (Array with: nodes second) ]
+]
+
+{ #category : #'grammar-pragmas' }
+PPSmalltalkGrammar >> newKeywordPragma [
+	^ (keywordToken , binaryExpression wrapped) plus ==> [ :nodes | 
+		Array 
+			with: (nodes collect: [ :each | each first ])
+			with: (nodes collect: [ :each | each second ]) ]
+]
+
+{ #category : #grammar }
+PPSmalltalkGrammar >> newPragma [
+	^ $° asParser smalltalkToken , newPragmaMessage , $° asParser smalltalkToken
+]
+
+{ #category : #'grammar-pragmas' }
+PPSmalltalkGrammar >> newPragmaMessage [
+	^ newKeywordPragma / newUnaryPragma / newBinaryPragma
+]
+
+{ #category : #grammar }
+PPSmalltalkGrammar >> newPragmas [
+	^ newPragma star
+]
+
+{ #category : #'grammar-pragmas' }
+PPSmalltalkGrammar >> newUnaryPragma [
+	^ identifierToken ==> [ :node | 
+		Array 
+			with: (Array with: node)
+			with: (Array new) ]
 ]
 
 { #category : #'grammar-literals' }

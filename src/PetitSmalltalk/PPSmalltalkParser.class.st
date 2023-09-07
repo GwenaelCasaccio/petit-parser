@@ -312,9 +312,9 @@ PPSmalltalkParser >> methodDeclaration [
 
 { #category : #grammar }
 PPSmalltalkParser >> methodSequence [
-	^ super methodSequence map: [ :periodNodes1 :pragmaNodes1 :periodNodes2 :tempNodes :periodNodes3 :pragmaNodes2 :periodNodes4 :statementNodes |
+	^ super methodSequence map: [ :periodNodes1 :pragmaNodes1 :newPragmaNodes1 :periodNodes2 :tempNodes :periodNodes3 :pragmaNodes2 :newPragmaNodes2 :periodNodes4 :statementNodes |
 		Array
-			with: pragmaNodes1 , pragmaNodes2
+			with: pragmaNodes1 , newPragmaNodes1 , pragmaNodes2 , newPragmaNodes2
 			with: (self build: tempNodes sequence: periodNodes1 , periodNodes2 , periodNodes3 , periodNodes4 , statementNodes) ]
 ]
 
@@ -322,6 +322,21 @@ PPSmalltalkParser >> methodSequence [
 PPSmalltalkParser >> namedBlock [
 	^ super namedBlock map: [ :leftToken :blockNode :rightToken | 
 		RBNamedBlockNode node: blockNode ]
+]
+
+{ #category : #grammar }
+PPSmalltalkParser >> newPragma [
+	^ super newPragma
+		==> [ :nodes | 
+			(RBNewPragmaNode
+				selector: (self buildSelector: nodes second first)
+				keywordsPositions: (nodes second first collect: [ :each | each start ])
+				arguments: nodes second second)
+				addComments: nodes first comments;
+				addComments: nodes last comments;
+				left: nodes first start;
+				right: nodes last start;
+				yourself ]
 ]
 
 { #category : #'grammar-literals' }
