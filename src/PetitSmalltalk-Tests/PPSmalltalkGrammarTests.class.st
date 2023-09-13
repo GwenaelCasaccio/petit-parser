@@ -510,6 +510,27 @@ PPSmalltalkGrammarTests >> testMethod3 [
 		rule: #method
 ]
 
+{ #category : #'testing-methods' }
+PPSmalltalkGrammarTests >> testMethods1 [
+	self 
+		parse: 'method <return: #UInt8> | a | <abc: 123 def: 123> £ foo ^ abc £. ^ a'
+		rule: #method
+]
+
+{ #category : #'testing-methods' }
+PPSmalltalkGrammarTests >> testMethods2 [
+	self 
+		parse: 'method <return: #UInt8> | a | °abc: 123 def: 123° £ foo ^ abc £. ^ a'
+		rule: #method
+]
+
+{ #category : #'testing-named blocks' }
+PPSmalltalkGrammarTests >> testNamedBlockWithPragmas1 [
+	self 
+		parse: '£ foo °type: 123° 123 £'
+		rule: #namedBlock
+]
+
 { #category : #'testing-literals' }
 PPSmalltalkGrammarTests >> testNumberLiteral1 [
 	self 

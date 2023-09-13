@@ -326,7 +326,7 @@ PPSmalltalkGrammar >> keywordMethod [
 
 { #category : #'grammar-pragmas' }
 PPSmalltalkGrammar >> keywordPragma [
-	^ (keywordToken , binaryExpression wrapped) plus ==> [ :nodes | 
+	^ (keywordToken , arrayItem) plus ==> [ :nodes | 
 		Array 
 			with: (nodes collect: [ :each | each first ])
 			with: (nodes collect: [ :each | each second ]) ]
