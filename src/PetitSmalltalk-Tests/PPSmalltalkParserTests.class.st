@@ -798,6 +798,27 @@ PPSmalltalkParserTests >> testMethod3 [
 	self assert: result body statements first value arguments first isVariable
 ]
 
+{ #category : #'testing-methods' }
+PPSmalltalkParserTests >> testMethods1 [
+
+	super testMethods1.
+	self assert: result isMethod. 
+]
+
+{ #category : #'testing-methods' }
+PPSmalltalkParserTests >> testMethods2 [
+
+	super testMethods2.
+	self assert: result isMethod. 
+]
+
+{ #category : #'testing-named blocks' }
+PPSmalltalkParserTests >> testNamedBlockWithPragmas1 [
+
+	super testNamedBlockWithPragmas1.
+	self assert: result isNamedBlock.
+]
+
 { #category : #'testing-literals' }
 PPSmalltalkParserTests >> testNumberLiteral1 [
 	super testNumberLiteral1.
